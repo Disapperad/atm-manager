@@ -37,11 +37,7 @@ namespace atm_manager
         {
             List<SqlParameter> parameters = new List<SqlParameter>()
             {
-                new SqlParameter
-                {
-                    ParameterName = "@NUMBER",
-                    Value = input_accounts_search.Text
-                }
+                new SqlParameter {ParameterName = "@NUMBER", Value = input_accounts_search.Text}
             };
 
             Search.SetGridContent(data_accounts, "EXEC AccountGet @NUMBER", parameters);
@@ -49,18 +45,29 @@ namespace atm_manager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            data_accounts.Columns.Add("AccountsData_Tab_ID", "Номер");
-            data_accounts.Columns.Add("AccountsData_Tab_AccountID", "Номер счёта");
-            data_accounts.Columns.Add("AccountsData_Tab_PersonName", "Имя Отчество Фамилия");
-            data_accounts.Columns.Add("AccountsData_Tab_Cash", "Деньги на счету (Руб.)");
-
             datagrid_atms.Columns.Add("AtmsData_Tab_ID", "Номер");
             datagrid_atms.Columns.Add("AtmsData_Tab_SerialNumber", "Серийный номер банкомата");
             datagrid_atms.Columns.Add("AtmsData_Tab_Bank", "Принадлежит банку №");
 
-
             Input_accounts_search_TextChanged(sender, e);
             Input_banks_search_TextChanged(sender, e);
+        }
+
+        private bool WhileLoad = false;
+        private void data_accounts_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!WhileLoad)
+            {
+                WhileLoad = true;
+                return;
+            }
+
+            List<SqlParameter> parameters = new List<SqlParameter>()
+            {
+                new SqlParameter {ParameterName = "@NUMBER", Value = data_accounts.CurrentRow.Cells[0].Value}
+            };
+
+            Search.SetGridContent(data_transaction, "EXEC TransactionByPerson @NUMBER", parameters);
         }
     }
 }
