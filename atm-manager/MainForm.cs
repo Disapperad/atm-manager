@@ -14,6 +14,7 @@ namespace atm_manager
         {
             InitializeComponent();
             AllocConsole();
+
             input_accounts_search.TextChanged += Input_accounts_search_TextChanged;
             input_banks_search.TextChanged += Input_banks_search_TextChanged;
         }
@@ -51,7 +52,7 @@ namespace atm_manager
             data_accounts.Columns.Add("AccountsData_Tab_ID", "Номер");
             data_accounts.Columns.Add("AccountsData_Tab_AccountID", "Номер счёта");
             data_accounts.Columns.Add("AccountsData_Tab_PersonName", "Имя Отчество Фамилия");
-            data_accounts.Columns.Add("AccountsData_Tab_Cash", "Деньги на счету");
+            data_accounts.Columns.Add("AccountsData_Tab_Cash", "Деньги на счету (Руб.)");
 
             datagrid_atms.Columns.Add("AtmsData_Tab_ID", "Номер");
             datagrid_atms.Columns.Add("AtmsData_Tab_SerialNumber", "Серийный номер банкомата");
