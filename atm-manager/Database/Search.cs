@@ -5,36 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-namespace atm_manager.Database
+using System.Configuration;
+using System.Collections.Specialized;
+using ATMManager.Database.Methods;
+using ATMManager.Database.WorkWithCommands;
+
+namespace ATMManager.Database.Search
 {
     internal static class Search
-    {
-        public static void SetGridContent(DataGridView Grid, string CommandText, List<SqlParameter> ParametrList)
+    {   
+        public static void SetGridContent(DataGridView Grid, string CommandText, SqlParameter[] ParametrList)
         {
             Grid.Rows.Clear();
 
-            using (SqlConnection Connection = new(@"Server=server-sql1\Students; Integrated Security=true; Database=FedotovPractice"))
+            using SqlConnection Connection = new(ConfigurationManager.AppSettings.Get("ConnectionString"));
+            SqlCommand CurrentCommand = CommandsWorker.GetCommandsWithParameters(CommandText, ParametrList);
+            CurrentCommand.Connection = Connection;
+
+            Connection.Open();
+
+            using SqlDataReader Reader = CurrentCommand.ExecuteReader();
+
+            while (Reader.Read())
             {
-                SqlCommand Command = new SqlCommand(CommandText, Connection);
+                int RowIndex = Grid.Rows.Add();
 
-                foreach (SqlParameter param in ParametrList)
+                for (int i = 0; i < Reader.FieldCount; i++)
                 {
-                    Command.Parameters.Add(param);
-                }
-
-                Connection.Open();
-
-                using (SqlDataReader Reader = Command.ExecuteReader())
-                {
-                    while (Reader.Read())
-                    {
-                        int RowIndex = Grid.Rows.Add();
-
-                        for (int i = 0; i < Reader.FieldCount; i++)
-                        {
-                            Grid.Rows[RowIndex].Cells[i].Value = Reader.GetValue(i);
-                        }
-                    }
+                    Grid.Rows[RowIndex].Cells[i].Value = Reader.GetValue(i);
                 }
             }
         }

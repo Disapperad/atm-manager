@@ -1,4 +1,4 @@
-﻿namespace atm_manager
+﻿namespace ATMManager
 {
     partial class MainForm
     {
@@ -55,12 +55,17 @@
             this.tabPage1_banks = new System.Windows.Forms.TabPage();
             this.tabPage_transaction = new System.Windows.Forms.TabPage();
             this.tabPage_tracsactiontypes = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPage_accounts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data_transaction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.data_accounts)).BeginInit();
             this.tabPage_atms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_atms)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -79,6 +84,7 @@
             // 
             // tabPage_accounts
             // 
+            this.tabPage_accounts.Controls.Add(this.groupBox1);
             this.tabPage_accounts.Controls.Add(this.combobox_transactionSelect);
             this.tabPage_accounts.Controls.Add(this.input_transaction);
             this.tabPage_accounts.Controls.Add(this.data_transaction);
@@ -266,7 +272,6 @@
             this.data_accounts.ShowRowErrors = false;
             this.data_accounts.Size = new System.Drawing.Size(549, 381);
             this.data_accounts.TabIndex = 0;
-            this.data_accounts.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.data_accounts_CellEnter);
             // 
             // AccountsData_Tab_ID
             // 
@@ -357,6 +362,45 @@
             this.tabPage_tracsactiontypes.Text = "Типы операций";
             this.tabPage_tracsactiontypes.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Location = new System.Drawing.Point(8, 426);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(541, 137);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Работа со счетами";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 26);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(529, 29);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Добавить счёт";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(6, 61);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(529, 29);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Изменить выбранный счёт";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(6, 96);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(529, 29);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Удалить запись";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -376,6 +420,7 @@
             this.tabPage_atms.ResumeLayout(false);
             this.tabPage_atms.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_atms)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -406,5 +451,9 @@
         private DataGridViewTextBoxColumn TransactionData_To;
         private DataGridViewTextBoxColumn TransactionData_ATMNum;
         private DataGridViewTextBoxColumn TransactionData_Cash;
+        private GroupBox groupBox1;
+        private Button button3;
+        private Button button2;
+        private Button button1;
     }
 }

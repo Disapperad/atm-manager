@@ -1,4 +1,4 @@
-namespace atm_manager
+namespace ATMManager
 {
     internal static class Program
     {

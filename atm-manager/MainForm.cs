@@ -1,8 +1,9 @@
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
-using atm_manager.Database;
+using ATMManager.Database.Search;
+using ATMManager.Database.Methods;
 
-namespace atm_manager
+namespace ATMManager
 {
     public partial class MainForm : Form
     {
@@ -21,13 +22,9 @@ namespace atm_manager
 
         private void Input_banks_search_TextChanged(object? sender, EventArgs e)
         {
-            List<SqlParameter> parameters = new List<SqlParameter>()
+            SqlParameter[] parameters = 
             {
-                new SqlParameter
-                {
-                    ParameterName = "@NUMBER",
-                    Value = input_banks_search.Text
-                }
+                new SqlParameter { ParameterName = "@NUMBER", Value = input_banks_search.Text}
             };
 
             Search.SetGridContent(datagrid_atms, "EXEC GetAtms @NUMBER", parameters);
@@ -35,7 +32,7 @@ namespace atm_manager
 
         private void Input_accounts_search_TextChanged(object? sender, EventArgs e)
         {
-            List<SqlParameter> parameters = new List<SqlParameter>()
+            SqlParameter[] parameters = 
             {
                 new SqlParameter {ParameterName = "@NUMBER", Value = input_accounts_search.Text}
             };
@@ -45,29 +42,9 @@ namespace atm_manager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            datagrid_atms.Columns.Add("AtmsData_Tab_ID", "Номер");
-            datagrid_atms.Columns.Add("AtmsData_Tab_SerialNumber", "Серийный номер банкомата");
-            datagrid_atms.Columns.Add("AtmsData_Tab_Bank", "Принадлежит банку №");
-
+            data_accounts.ClearSelection();
             Input_accounts_search_TextChanged(sender, e);
             Input_banks_search_TextChanged(sender, e);
-        }
-
-        private bool WhileLoad = false;
-        private void data_accounts_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            if (!WhileLoad)
-            {
-                WhileLoad = true;
-                return;
-            }
-
-            List<SqlParameter> parameters = new List<SqlParameter>()
-            {
-                new SqlParameter {ParameterName = "@NUMBER", Value = data_accounts.CurrentRow.Cells[0].Value}
-            };
-
-            Search.SetGridContent(data_transaction, "EXEC TransactionByPerson @NUMBER", parameters);
         }
     }
 }
