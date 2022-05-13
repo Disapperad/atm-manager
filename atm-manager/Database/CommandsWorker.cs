@@ -15,6 +15,7 @@ namespace ATMManager.Database.WorkWithCommands
 
             Command.CommandType = System.Data.CommandType.StoredProcedure;
 
+
             foreach (SqlParameter Param in Parameters)
             {
                 Command.Parameters.Add(Param);
@@ -23,6 +24,7 @@ namespace ATMManager.Database.WorkWithCommands
             return Command;
         }
 
+        /*
         public static void UpdateGrid(SqlCommand Command, int Results, DataGridView Grid, string[] Parameters)
         {
             if (Results > 0)
@@ -37,5 +39,6 @@ namespace ATMManager.Database.WorkWithCommands
                 }
             }
         }
+        */
     }
 }

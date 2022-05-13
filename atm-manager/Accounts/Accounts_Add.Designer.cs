@@ -1,6 +1,6 @@
 ﻿namespace ATMManager
 {
-    partial class AddAccount
+    partial class Accounts_Add
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TextBox_Add_Accounts_Cash = new System.Windows.Forms.TextBox();
             this.TextBox_Add_Accounts_Name = new System.Windows.Forms.TextBox();
             this.TextBox_Add_Accounts_Account = new System.Windows.Forms.TextBox();
             this.Button_Add_Account = new System.Windows.Forms.Button();
@@ -38,23 +37,14 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.TextBox_Add_Accounts_Cash);
             this.groupBox1.Controls.Add(this.TextBox_Add_Accounts_Name);
             this.groupBox1.Controls.Add(this.TextBox_Add_Accounts_Account);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(448, 129);
+            this.groupBox1.Size = new System.Drawing.Size(448, 94);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ввод нового банковского счёта";
-            // 
-            // TextBox_Add_Accounts_Cash
-            // 
-            this.TextBox_Add_Accounts_Cash.Location = new System.Drawing.Point(6, 92);
-            this.TextBox_Add_Accounts_Cash.Name = "TextBox_Add_Accounts_Cash";
-            this.TextBox_Add_Accounts_Cash.PlaceholderText = "Введите количество денежных средств";
-            this.TextBox_Add_Accounts_Cash.Size = new System.Drawing.Size(436, 27);
-            this.TextBox_Add_Accounts_Cash.TabIndex = 2;
             // 
             // TextBox_Add_Accounts_Name
             // 
@@ -75,7 +65,7 @@
             // 
             // Button_Add_Account
             // 
-            this.Button_Add_Account.Location = new System.Drawing.Point(12, 147);
+            this.Button_Add_Account.Location = new System.Drawing.Point(12, 112);
             this.Button_Add_Account.Name = "Button_Add_Account";
             this.Button_Add_Account.Size = new System.Drawing.Size(448, 35);
             this.Button_Add_Account.TabIndex = 1;
@@ -87,7 +77,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 188);
+            this.ClientSize = new System.Drawing.Size(465, 158);
             this.Controls.Add(this.Button_Add_Account);
             this.Controls.Add(this.groupBox1);
             this.Name = "AddAccount";
@@ -101,7 +91,6 @@
         #endregion
 
         private GroupBox groupBox1;
-        private TextBox TextBox_Add_Accounts_Cash;
         private TextBox TextBox_Add_Accounts_Name;
         private TextBox TextBox_Add_Accounts_Account;
         private Button Button_Add_Account;

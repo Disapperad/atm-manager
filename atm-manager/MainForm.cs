@@ -49,9 +49,14 @@ namespace ATMManager
 
         private void Button_Accounts_AddAccount_Click(object sender, EventArgs e)
         {
-            AddAccount Form = new AddAccount();
+            Accounts_Add Form = new Accounts_Add();
             Form.Owner = this;
             Form.ShowDialog(this);
+        }
+
+        private void Button_Operations_Add_Click(object sender, EventArgs e)
+        {
+            new Operations.Operations_Add().Show();
         }
     }
 }

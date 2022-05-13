@@ -10,12 +10,13 @@ using System.Windows.Forms;
 using ATMManager.Database.Methods;
 using ATMManager.Database.WorkWithCommands;
 using System.Data.SqlClient;
+using ATMManager.Database.Search;
 
 namespace ATMManager
 {
-    public partial class AddAccount : Form
+    public partial class Accounts_Add : Form
     {
-        public AddAccount()
+        public Accounts_Add()
         {
             InitializeComponent();
         }
@@ -26,21 +27,16 @@ namespace ATMManager
             {
                 new SqlParameter { ParameterName = "@ACCOUNTNUMBER", Value = TextBox_Add_Accounts_Account.Text},
                 new SqlParameter { ParameterName = "@PERSONNAME", Value = TextBox_Add_Accounts_Name.Text},
-                new SqlParameter { ParameterName = "@CASH", Value = TextBox_Add_Accounts_Cash.Text },
                 new SqlParameter { ParameterName = "@ID", Direction = ParameterDirection.Output, Value = 0}
             };
+       
+            MethodList.AddRow(CommandsWorker.GetCommandsWithParameters("AddAccount", Parameters));
 
-            (SqlCommand Command, int Count) = MethodList.AddRow(
-                CommandsWorker.GetCommandsWithParameters("AddAccount", Parameters));
-
-            foreach (var item in Command.Parameters)
-            {
-                Console.WriteLine(item);
-            }
-
+            Search.SetGridContent((DataGridView)Owner.Controls.Find("Data_Accounts", true)[0], "AccountGet");
+            /*
             CommandsWorker.UpdateGrid(Command, Count, (DataGridView)Owner.Controls.Find("Data_Accounts", true)[0],
-                new string[] { TextBox_Add_Accounts_Account.Text, TextBox_Add_Accounts_Name.Text, TextBox_Add_Accounts_Cash.Text});
-            
+                new string[] { TextBox_Add_Accounts_Account.Text, TextBox_Add_Accounts_Name.Text, "0"});
+            */
         }
     }
 }

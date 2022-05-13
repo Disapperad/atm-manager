@@ -14,12 +14,24 @@ namespace ATMManager.Database.Search
 {
     internal static class Search
     {   
-        public static void SetGridContent(DataGridView Grid, string CommandText, SqlParameter[] ParametrList)
+        public static void SetGridContent(DataGridView Grid, string CommandText,
+            SqlParameter[]? ParameterList = null)
         {
             Grid.Rows.Clear();
 
             using SqlConnection Connection = new(ConfigurationManager.AppSettings.Get("ConnectionString"));
-            SqlCommand CurrentCommand = CommandsWorker.GetCommandsWithParameters(CommandText, ParametrList);
+
+            SqlCommand CurrentCommand;
+
+            if (ParameterList != null)
+            {
+                CurrentCommand = CommandsWorker.GetCommandsWithParameters(CommandText, ParameterList);
+            }
+            else
+            {
+               CurrentCommand = new(CommandText, Connection);
+            }
+            
             CurrentCommand.Connection = Connection;
 
             Connection.Open();
