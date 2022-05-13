@@ -33,6 +33,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_accounts = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.Button_Accounts_AddAccount = new System.Windows.Forms.Button();
             this.combobox_transactionSelect = new System.Windows.Forms.ComboBox();
             this.input_transaction = new System.Windows.Forms.TextBox();
             this.data_transaction = new System.Windows.Forms.DataGridView();
@@ -44,7 +48,7 @@
             this.TransactionData_ATMNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TransactionData_Cash = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.input_accounts_search = new System.Windows.Forms.TextBox();
-            this.data_accounts = new System.Windows.Forms.DataGridView();
+            this.Data_Accounts = new System.Windows.Forms.DataGridView();
             this.AccountsData_Tab_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AccountsData_Tab_AccountID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AccountsData_Tab_PersonName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,17 +59,13 @@
             this.tabPage1_banks = new System.Windows.Forms.TabPage();
             this.tabPage_transaction = new System.Windows.Forms.TabPage();
             this.tabPage_tracsactiontypes = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPage_accounts.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data_transaction)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.data_accounts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Accounts)).BeginInit();
             this.tabPage_atms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_atms)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -89,7 +89,7 @@
             this.tabPage_accounts.Controls.Add(this.input_transaction);
             this.tabPage_accounts.Controls.Add(this.data_transaction);
             this.tabPage_accounts.Controls.Add(this.input_accounts_search);
-            this.tabPage_accounts.Controls.Add(this.data_accounts);
+            this.tabPage_accounts.Controls.Add(this.Data_Accounts);
             this.tabPage_accounts.Location = new System.Drawing.Point(4, 29);
             this.tabPage_accounts.Name = "tabPage_accounts";
             this.tabPage_accounts.Padding = new System.Windows.Forms.Padding(3);
@@ -97,6 +97,46 @@
             this.tabPage_accounts.TabIndex = 0;
             this.tabPage_accounts.Text = "Счета пользователей";
             this.tabPage_accounts.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.Button_Accounts_AddAccount);
+            this.groupBox1.Location = new System.Drawing.Point(8, 426);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(541, 137);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Работа со счетами";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(6, 96);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(529, 29);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Удалить запись";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(6, 61);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(529, 29);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Изменить выбранный счёт";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // Button_Accounts_AddAccount
+            // 
+            this.Button_Accounts_AddAccount.Location = new System.Drawing.Point(6, 26);
+            this.Button_Accounts_AddAccount.Name = "Button_Accounts_AddAccount";
+            this.Button_Accounts_AddAccount.Size = new System.Drawing.Size(529, 29);
+            this.Button_Accounts_AddAccount.TabIndex = 0;
+            this.Button_Accounts_AddAccount.Text = "Добавить счёт";
+            this.Button_Accounts_AddAccount.UseVisualStyleBackColor = true;
+            this.Button_Accounts_AddAccount.Click += new System.EventHandler(this.Button_Accounts_AddAccount_Click);
             // 
             // combobox_transactionSelect
             // 
@@ -148,6 +188,7 @@
             this.data_transaction.Name = "data_transaction";
             this.data_transaction.ReadOnly = true;
             this.data_transaction.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.data_transaction.RowHeadersVisible = false;
             this.data_transaction.RowHeadersWidth = 51;
             this.data_transaction.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.data_transaction.RowTemplate.Height = 29;
@@ -216,14 +257,14 @@
             this.input_accounts_search.Size = new System.Drawing.Size(543, 27);
             this.input_accounts_search.TabIndex = 3;
             // 
-            // data_accounts
+            // Data_Accounts
             // 
-            this.data_accounts.AllowUserToAddRows = false;
-            this.data_accounts.AllowUserToDeleteRows = false;
-            this.data_accounts.AllowUserToResizeRows = false;
-            this.data_accounts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.data_accounts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.data_accounts.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.Data_Accounts.AllowUserToAddRows = false;
+            this.Data_Accounts.AllowUserToDeleteRows = false;
+            this.Data_Accounts.AllowUserToResizeRows = false;
+            this.Data_Accounts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Data_Accounts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.Data_Accounts.BackgroundColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -231,9 +272,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.data_accounts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.data_accounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.data_accounts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Data_Accounts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Data_Accounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Data_Accounts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.AccountsData_Tab_ID,
             this.AccountsData_Tab_AccountID,
             this.AccountsData_Tab_PersonName,
@@ -245,15 +286,15 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.data_accounts.DefaultCellStyle = dataGridViewCellStyle2;
-            this.data_accounts.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.data_accounts.GridColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.data_accounts.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.data_accounts.Location = new System.Drawing.Point(0, 6);
-            this.data_accounts.MultiSelect = false;
-            this.data_accounts.Name = "data_accounts";
-            this.data_accounts.ReadOnly = true;
-            this.data_accounts.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Data_Accounts.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Data_Accounts.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.Data_Accounts.GridColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Data_Accounts.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.Data_Accounts.Location = new System.Drawing.Point(0, 6);
+            this.Data_Accounts.MultiSelect = false;
+            this.Data_Accounts.Name = "Data_Accounts";
+            this.Data_Accounts.ReadOnly = true;
+            this.Data_Accounts.RightToLeft = System.Windows.Forms.RightToLeft.No;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -261,17 +302,18 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.data_accounts.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.data_accounts.RowHeadersWidth = 51;
-            this.data_accounts.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.data_accounts.RowTemplate.Height = 29;
-            this.data_accounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.data_accounts.ShowCellErrors = false;
-            this.data_accounts.ShowCellToolTips = false;
-            this.data_accounts.ShowEditingIcon = false;
-            this.data_accounts.ShowRowErrors = false;
-            this.data_accounts.Size = new System.Drawing.Size(549, 381);
-            this.data_accounts.TabIndex = 0;
+            this.Data_Accounts.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.Data_Accounts.RowHeadersVisible = false;
+            this.Data_Accounts.RowHeadersWidth = 51;
+            this.Data_Accounts.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.Data_Accounts.RowTemplate.Height = 29;
+            this.Data_Accounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Data_Accounts.ShowCellErrors = false;
+            this.Data_Accounts.ShowCellToolTips = false;
+            this.Data_Accounts.ShowEditingIcon = false;
+            this.Data_Accounts.ShowRowErrors = false;
+            this.Data_Accounts.Size = new System.Drawing.Size(549, 381);
+            this.Data_Accounts.TabIndex = 0;
             // 
             // AccountsData_Tab_ID
             // 
@@ -362,45 +404,6 @@
             this.tabPage_tracsactiontypes.Text = "Типы операций";
             this.tabPage_tracsactiontypes.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(8, 426);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(541, 137);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Работа со счетами";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 26);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(529, 29);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Добавить счёт";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(6, 61);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(529, 29);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Изменить выбранный счёт";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(6, 96);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(529, 29);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Удалить запись";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -415,12 +418,12 @@
             this.tabControl.ResumeLayout(false);
             this.tabPage_accounts.ResumeLayout(false);
             this.tabPage_accounts.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.data_transaction)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.data_accounts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Accounts)).EndInit();
             this.tabPage_atms.ResumeLayout(false);
             this.tabPage_atms.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid_atms)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -434,7 +437,6 @@
         private TabPage tabPage_transaction;
         private TabPage tabPage_tracsactiontypes;
         private TextBox input_accounts_search;
-        private DataGridView data_accounts;
         private TextBox input_banks_search;
         private DataGridView datagrid_atms;
         private TextBox input_transaction;
@@ -454,6 +456,7 @@
         private GroupBox groupBox1;
         private Button button3;
         private Button button2;
-        private Button button1;
+        private Button Button_Accounts_AddAccount;
+        public DataGridView Data_Accounts;
     }
 }

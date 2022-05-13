@@ -27,7 +27,7 @@ namespace ATMManager
                 new SqlParameter { ParameterName = "@NUMBER", Value = input_banks_search.Text}
             };
 
-            Search.SetGridContent(datagrid_atms, "EXEC GetAtms @NUMBER", parameters);
+            Search.SetGridContent(datagrid_atms, "GetAtms", parameters);
         }
 
         private void Input_accounts_search_TextChanged(object? sender, EventArgs e)
@@ -37,14 +37,21 @@ namespace ATMManager
                 new SqlParameter {ParameterName = "@NUMBER", Value = input_accounts_search.Text}
             };
 
-            Search.SetGridContent(data_accounts, "EXEC AccountGet @NUMBER", parameters);
+            Search.SetGridContent(Data_Accounts, "AccountGet", parameters);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            data_accounts.ClearSelection();
+            Data_Accounts.ClearSelection();
             Input_accounts_search_TextChanged(sender, e);
-            Input_banks_search_TextChanged(sender, e);
+           // Input_banks_search_TextChanged(sender, e);
+        }
+
+        private void Button_Accounts_AddAccount_Click(object sender, EventArgs e)
+        {
+            AddAccount Form = new AddAccount();
+            Form.Owner = this;
+            Form.ShowDialog(this);
         }
     }
 }

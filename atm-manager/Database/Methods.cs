@@ -11,13 +11,13 @@ namespace ATMManager.Database.Methods
 {
     internal static class MethodList
     {
-        public static int AddRow(SqlCommand Command)
+        public static (SqlCommand, int) AddRow(SqlCommand Command)
         {
             using SqlConnection Connection = new(ConfigurationManager.AppSettings.Get("ConnectionString"));
             Command.Connection = Connection;
             Connection.Open();
 
-            return Command.ExecuteNonQuery();
+            return (Command, Command.ExecuteNonQuery());
         }
 
         public static int RemoveRow(SqlCommand Command)
