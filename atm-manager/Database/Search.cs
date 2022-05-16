@@ -8,14 +8,13 @@ using System.Data;
 using System.Configuration;
 using System.Collections.Specialized;
 using ATMManager.Database.Methods;
-using ATMManager.Database.WorkWithCommands;
 
 namespace ATMManager.Database.Search
 {
     internal static class Search
     {   
-        public static void SetGridContent(DataGridView Grid, string CommandText,
-            SqlParameter[]? ParameterList = null)
+        public static void SetGridContent(in DataGridView Grid, in string CommandText,
+            in SqlParameter[]? ParameterList = null)
         {
             Grid.Rows.Clear();
 
@@ -25,7 +24,7 @@ namespace ATMManager.Database.Search
 
             if (ParameterList != null)
             {
-                CurrentCommand = CommandsWorker.GetCommandsWithParameters(CommandText, ParameterList);
+                CurrentCommand = MethodList.GetCommandsWithParameters(CommandText, ParameterList);
             }
             else
             {

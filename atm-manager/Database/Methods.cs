@@ -11,6 +11,20 @@ namespace ATMManager.Database.Methods
 {
     internal static class MethodList
     {
+        public static SqlCommand GetCommandsWithParameters(in string CommandText, in SqlParameter[] Parameters)
+        {
+            SqlCommand Command = new(CommandText);
+
+            Command.CommandType = System.Data.CommandType.StoredProcedure;
+
+            foreach (SqlParameter Param in Parameters)
+            {
+                Command.Parameters.Add(Param);
+            }
+
+            return Command;
+        }
+
         public static (SqlCommand, int) AddRow(SqlCommand Command)
         {
             using SqlConnection Connection = new(ConfigurationManager.AppSettings.Get("ConnectionString"));

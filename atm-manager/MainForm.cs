@@ -15,48 +15,66 @@ namespace ATMManager
         {
             InitializeComponent();
             AllocConsole();
-
-            input_accounts_search.TextChanged += Input_accounts_search_TextChanged;
-            input_banks_search.TextChanged += Input_banks_search_TextChanged;
-        }
-
-        private void Input_banks_search_TextChanged(object? sender, EventArgs e)
-        {
-            SqlParameter[] parameters = 
-            {
-                new SqlParameter { ParameterName = "@NUMBER", Value = input_banks_search.Text}
-            };
-
-            Search.SetGridContent(datagrid_atms, "GetAtms", parameters);
-        }
-
-        private void Input_accounts_search_TextChanged(object? sender, EventArgs e)
-        {
-            SqlParameter[] parameters = 
-            {
-                new SqlParameter {ParameterName = "@NUMBER", Value = input_accounts_search.Text}
-            };
-
-            Search.SetGridContent(Data_Accounts, "AccountGet", parameters);
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            Data_Accounts.ClearSelection();
-            Input_accounts_search_TextChanged(sender, e);
-           // Input_banks_search_TextChanged(sender, e);
         }
 
         private void Button_Accounts_AddAccount_Click(object sender, EventArgs e)
         {
-            Accounts_Add Form = new Accounts_Add();
-            Form.Owner = this;
-            Form.ShowDialog(this);
+            new Accounts.Add().ShowDialog(this);
         }
 
         private void Button_Operations_Add_Click(object sender, EventArgs e)
         {
-            new Operations.Operations_Add().Show();
+           
+        }
+
+        private void Button_Accounts_Remove_Click(object sender, EventArgs e)
+        {
+            new Accounts.Accounts_Remove().ShowDialog(this);
+        }
+
+        private void Button_SearchAccounts_Click(object sender, EventArgs e)
+        {
+            int ActionID = 0;
+
+            RadioButton? CheckedRadioButton = null;
+
+            if (Account_Radio_CashR.Checked)
+                CheckedRadioButton = Account_Radio_CashR;
+            else if (Account_Radio_CashM.Checked)
+                CheckedRadioButton = Account_Radio_CashM;
+            else if (Account_Radio_CashB.Checked)
+                CheckedRadioButton = Account_Radio_CashB;
+
+            if (CheckedRadioButton != null)
+            {
+                switch (CheckedRadioButton.Name.ToString())
+                {
+                    case "Account_Radio_CashR":
+                        ActionID = 3;
+                        break;
+                    case "Account_Radio_CashB":
+                        ActionID = 4;
+                        break;
+                    case "Account_Radio_CashM":
+                        ActionID = 5;
+                        break;
+                }
+            }
+
+            if (ActionID > 2 && (Accounts_Search_TextBox_Cash.Text == string.Empty))
+            {
+                ActionID = 0;
+            }
+
+            SqlParameter[] Parameters =
+            {
+                new SqlParameter { ParameterName = "@Action", Value = ActionID},
+                new SqlParameter { ParameterName = "@AccountNumber", Value = Accounts_Search_TextBox_Account.Text},
+                new SqlParameter { ParameterName = "@FIO", Value = Accounts_Search_TextBox_FIO.Text},
+                new SqlParameter { ParameterName = "@Cash", Value = Accounts_Search_TextBox_Cash.Text}
+            };
+
+            Search.SetGridContent(Data_Accounts, "SearchAccounts", Parameters);
         }
     }
 }

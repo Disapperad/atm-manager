@@ -1,6 +1,6 @@
-﻿namespace ATMManager
+﻿namespace ATMManager.Accounts
 {
-    partial class Accounts_Add
+    partial class Add
     {
         /// <summary>
         /// Required designer variable.

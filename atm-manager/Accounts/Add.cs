@@ -8,15 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ATMManager.Database.Methods;
-using ATMManager.Database.WorkWithCommands;
 using System.Data.SqlClient;
 using ATMManager.Database.Search;
 
-namespace ATMManager
+namespace ATMManager.Accounts
 {
-    public partial class Accounts_Add : Form
+    public partial class Add : Form
     {
-        public Accounts_Add()
+        public Add()
         {
             InitializeComponent();
         }
@@ -30,13 +29,9 @@ namespace ATMManager
                 new SqlParameter { ParameterName = "@ID", Direction = ParameterDirection.Output, Value = 0}
             };
        
-            MethodList.AddRow(CommandsWorker.GetCommandsWithParameters("AddAccount", Parameters));
+            MethodList.AddRow(MethodList.GetCommandsWithParameters("AddAccount", Parameters));
 
-            Search.SetGridContent((DataGridView)Owner.Controls.Find("Data_Accounts", true)[0], "AccountGet");
-            /*
-            CommandsWorker.UpdateGrid(Command, Count, (DataGridView)Owner.Controls.Find("Data_Accounts", true)[0],
-                new string[] { TextBox_Add_Accounts_Account.Text, TextBox_Add_Accounts_Name.Text, "0"});
-            */
+            Search.SetGridContent((DataGridView)Owner.Controls.Find("Data_Accounts", true)[0], "SearchAccounts");
         }
     }
 }
